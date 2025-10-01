@@ -20,7 +20,7 @@ public class RoutesConfiguration {
                         .path("/v1/signup/confirm").and().method(HttpMethod.POST)
                         .uri("lb://piano"))
                 .route("profiles", r -> r
-                        .path("/me")
+                        .path("/v1/me")
                         .filters(f -> f.filter(authenticationGatewayFilter))
                         .uri("lb://profiles"))
                 .build();

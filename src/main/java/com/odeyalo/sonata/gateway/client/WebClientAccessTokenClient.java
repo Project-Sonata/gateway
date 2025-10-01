@@ -26,10 +26,7 @@ public final class WebClientAccessTokenClient implements AccessTokenClient {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(body)
                 .retrieve()
-                .onStatus(status -> !status.is2xxSuccessful(), resp -> {
-                    System.out.println(resp.statusCode());
-                    return Mono.error(new InvalidAccessTokenException());
-                })
+                .onStatus(status -> !status.is2xxSuccessful(), resp -> Mono.error(new InvalidAccessTokenException()))
                 .bodyToMono(TokenMetadataDto.class);
     }
 }

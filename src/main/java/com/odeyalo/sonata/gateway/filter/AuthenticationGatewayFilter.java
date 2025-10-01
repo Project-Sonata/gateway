@@ -38,12 +38,11 @@ public final class AuthenticationGatewayFilter implements GatewayFilter {
                 .flatMap(body -> {
                     final String userId = body.getUserId();
                     exchange.getRequest().mutate().header("X-USER-ID", userId);
-                    logger.info("Set the X-USER-ID with value: {}", userId);
+                    logger.trace("Set the X-USER-ID with value: {}", userId);
                     return chain.filter(exchange);
                 })
                 .onErrorResume(err -> {
-                    logger.error("Error!: ",  err);
-                    logger.warn("Failed to validate access token: {}", accessToken);
+                    logger.debug("Failed to validate access token: {}", accessToken);
                     exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                     return exchange.getResponse().setComplete();
                 });

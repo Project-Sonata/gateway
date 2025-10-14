@@ -17,8 +17,7 @@ public class RoutesConfiguration {
     List<RouteRecord> routeRecords;
 
     @Bean
-    public RouteLocator customRouteLocator(final RouteLocatorBuilder builder,
-                                           final AuthenticationGatewayFilter authenticationGatewayFilter) {
+    public RouteLocator customRouteLocator(final RouteLocatorBuilder builder) {
 
         final RouteLocatorBuilder.Builder routeLocatorBuilder = builder.routes();
 
@@ -31,10 +30,6 @@ public class RoutesConfiguration {
 
 
         return builder.routes()
-                .route("profiles", r -> r
-                        .path("/v1/me")
-                        .filters(f -> f.filter(authenticationGatewayFilter))
-                        .uri("lb://profiles"))
                 .build();
     }
 }

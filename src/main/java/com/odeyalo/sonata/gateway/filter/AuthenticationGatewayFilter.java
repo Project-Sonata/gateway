@@ -24,7 +24,6 @@ public final class AuthenticationGatewayFilter implements GatewayFilter {
     @Override
     public Mono<Void> filter(final ServerWebExchange exchange,
                              final GatewayFilterChain chain) {
-        logger.info("AuthenticationGatewayFilter...");
         final String authorization = exchange.getRequest().getHeaders().getFirst("Authorization");
 
         if ( authorization == null || !authorization.startsWith("Bearer ") ) {

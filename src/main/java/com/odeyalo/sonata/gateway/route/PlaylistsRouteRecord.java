@@ -15,10 +15,10 @@ public final class PlaylistsRouteRecord implements RouteRecord {
     public Route getRoute() {
         return new Route(
                 "sonata-playlists", r -> r
-                .path("/v1/me/playlists", "/v1/me/playlists/*")
+                .path("/me/playlists", "/me/playlists/*")
                 .filters(
                         f -> f.filter(authenticationGatewayFilter)
-                                .rewritePath("/v1/me", "/v1/")
+                                .rewritePath("/me", "/")
                 )
                 .uri("lb://playlists")
         );

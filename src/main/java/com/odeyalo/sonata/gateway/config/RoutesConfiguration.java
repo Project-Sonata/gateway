@@ -29,7 +29,6 @@ public class RoutesConfiguration {
         });
 
 
-        return builder.routes()
-                .build();
+        return routeLocatorBuilder.build();
     }
 }
